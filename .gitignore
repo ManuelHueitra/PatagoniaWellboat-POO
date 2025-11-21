@@ -1,0 +1,26 @@
+# Archivos compilados y basura de Java
+*.class
+*.log
+*.ctxt
+.mtj.tmp/
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Carpeta de compilación de Maven
+target/
+
+# Archivos de configuración del IDE (no necesarios)
+.vscode/
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+
+.DS_Store
+Thumbs.db
