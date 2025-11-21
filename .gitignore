@@ -10,7 +10,7 @@
 *.zip
 *.tar.gz
 *.rar
-
+*.vscode
 # Carpeta de compilación de Maven
 target/
 
