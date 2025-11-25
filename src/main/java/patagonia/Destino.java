@@ -3,12 +3,12 @@ package patagonia;
 public class Destino {
     private String nombre;
     private int precioPasaje;
-    private int precioEncomientaKg;
+    private int precioEncomiendaKg;
 
-public Destino(String nombre, int precioPasaje, int precioEncomientaKg) {
+public Destino(String nombre, int precioPasaje, int precioEncomiendaKg) {
         this.nombre = nombre;
         this.precioPasaje = precioPasaje;
-        this.precioEncomientaKg = precioEncomientaKg;
+        this.precioEncomiendaKg = precioEncomiendaKg;
     }
 
     public String getNombre() {
@@ -19,8 +19,8 @@ public Destino(String nombre, int precioPasaje, int precioEncomientaKg) {
         return precioPasaje;
     }
 
-    public int getPrecioEncomientaKg() {
-        return precioEncomientaKg;
+    public int getPrecioEncomiendaKg() {
+        return precioEncomiendaKg;
     }
 }
 

@@ -1,7 +1,6 @@
 package patagonia;
 
 import java.util.Date;
-
 import javax.swing.plaf.DesktopIconUI;
 
 public class Viaje {
