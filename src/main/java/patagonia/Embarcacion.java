@@ -1,6 +1,6 @@
 package patagonia;
 // clase Embarcacion padre
-public class Embarcacion implements Serializable
+public class Embarcacion implements Serializable;
 public abstract class Embarcacion {
     protected String patente;
     protected int capacidadPasajeros;
