@@ -2,7 +2,7 @@ package patagonia;
 
 import java.util.Date;
 import javax.swing.plaf.DesktopIconUI;
-
+public class Viaje implements Serializable;
 public class Viaje {
     private Date Fecha;
     private String hora;
