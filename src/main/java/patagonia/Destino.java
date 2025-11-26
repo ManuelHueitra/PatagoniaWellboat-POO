@@ -1,6 +1,6 @@
 package patagonia;
 
-public class Destino implements Serializable
+public class Destino implements Serializable;
 public class Destino {
     private String nombre;
     private int precioPasaje;
