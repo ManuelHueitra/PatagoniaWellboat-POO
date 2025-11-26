@@ -1,5 +1,6 @@
 package patagonia;
 
+public class Usuario implements Serializable
 public class Usuario {
     private String nombre;
     private String password;
