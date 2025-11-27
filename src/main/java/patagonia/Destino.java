@@ -1,3 +1,4 @@
+import java.io.Serializable;
 package patagonia;
 import java.io.Serializable;
 public class Destino implements Serializable{

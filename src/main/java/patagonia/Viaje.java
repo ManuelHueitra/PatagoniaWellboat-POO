@@ -1,3 +1,4 @@
+import java.io.Serializable;
 package patagonia;
 
 import java.util.Date;
