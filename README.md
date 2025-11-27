@@ -1,6 +1,6 @@
 # 🚢 Proyecto AeroChinquihue (Patagonia Wellboat)
 
-> **Avance 1** | Asignatura: Programación Orientada a Objetos
+> **Avance 2** | Asignatura: Programación Orientada a Objetos
 
 Este repositorio contiene el código fuente del sistema de gestión para la empresa marítima **Patagonia Wellboat**.
 
