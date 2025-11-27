@@ -1,3 +1,4 @@
+import java.io.Serializable;
 package patagonia;
 // clase Embarcacion padre
 public class Embarcacion implements Serializable;
