@@ -1,6 +1,4 @@
-import java.io.Serializable;
 package patagonia;
-
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
