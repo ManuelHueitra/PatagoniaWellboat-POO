@@ -13,7 +13,8 @@ public class Main extends Application
     public static List<Usuario> ListaUsuarios = new ArrayList<Usuario>();
     public static List<Embarcacion> ListaEmbarcaciones = new ArrayList<Embarcacion>();
     public static List<Destino> ListaDestinos = new ArrayList<Destino>();
-
+    //Lista para guardar los viajes creados
+    public static List<Viaje> ListaViajes = new ArrayList<>();
     public void start(Stage primaryStage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("/patagonia/Login.fxml"));
@@ -21,10 +22,16 @@ public class Main extends Application
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
-    public static void main(String[] args)
-    {
-        cargarDatosIniciales(); // carga datos iniciales
-        launch(args); // inicia la aplicación JavaFX
+    public static void main(String[] args) {
+        // Intentamos cargar datos del archivo primero
+        boolean cargado = GestorArchivos.cargarDatos(ListaUsuarios, ListaDestinos, ListaEmbarcaciones, ListaViajes);
+        // Si no había archivo usamos tus datos por defecto
+        if (!cargado) {
+            cargarDatosIniciales();
+            // Y guardamos de inmediato para crear el archivo
+            GestorArchivos.guardarDatos(ListaUsuarios, ListaDestinos, ListaEmbarcaciones, ListaViajes);
+        }
+        launch(args);
     }
     private static void cargarDatosIniciales(){
         System.out.println("Cargando datos...");

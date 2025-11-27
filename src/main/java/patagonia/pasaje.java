@@ -1,12 +1,12 @@
 package patagonia;
 import java.io.Serializable;
 
-public class pasaje implements Serializable {
+public class Pasaje implements Serializable {
     private int numeroAsiento;
     private int preciofinal;
     private Cliente cliente;
 
-    public pasaje(int numeroAsiento, int preciofinal, Cliente cliente) {
+    public Pasaje(int numeroAsiento, int preciofinal, Cliente cliente) {
         this.numeroAsiento = numeroAsiento;
         this.preciofinal = preciofinal;
         this.cliente = cliente;
