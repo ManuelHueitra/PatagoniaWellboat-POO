@@ -1,7 +1,8 @@
 package patagonia;
 
-public class Usuario implements Serializable;
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String nombre;
     private String password;
     private String rol; // "Gerente" o "Asistente"

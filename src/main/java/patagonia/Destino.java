@@ -1,7 +1,6 @@
 package patagonia;
-
-public class Destino implements Serializable;
-public class Destino {
+import java.io.Serializable;
+public class Destino implements Serializable{
     private String nombre;
     private int precioPasaje;
     private int precioEncomiendaKg;

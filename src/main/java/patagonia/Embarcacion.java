@@ -1,7 +1,7 @@
 package patagonia;
+import java.io.Serializable;
 // clase Embarcacion padre
-public class Embarcacion implements Serializable;
-public abstract class Embarcacion {
+public abstract class Embarcacion implements Serializable {
     protected String patente;
     protected int capacidadPasajeros;
     protected double capacidadCarga;
