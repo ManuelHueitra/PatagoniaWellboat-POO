@@ -40,6 +40,15 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.fxml</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
 
             <plugin>
