@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="338.0" prefWidth="623.0" spacing="20.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 100%, #2ecc71, #004d40);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.ClienteLoginController">
+   
+   <children>
+      <Pane prefHeight="99.0" prefWidth="481.0">
+         <children>
+            <Label alignment="CENTER" layoutX="145.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #a5d6a7; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px;" text="Bienvenido a Wellboat">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#00000080" offsetY="3.0" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+
+      <TextField fx:id="txtNombreCliente" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Ingrese su nombre" style="-fx-background-color: #e8f5e9; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px;">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </TextField>
+
+      <TextField fx:id="txtRutCliente" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Ingrese su RUT" style="-fx-background-color: #e8f5e9; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px;">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </TextField>
+
+      <Button fx:id="btnIngresar" defaultButton="true" mnemonicParsing="false" onAction="#ingresarCliente" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #004d40; -fx-background-radius: 20; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-border-color: #2ecc71; -fx-border-radius: 20; -fx-border-width: 2px;" text="Ingresar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow color="#00000066" offsetY="3.0" />
+         </effect>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+   
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
