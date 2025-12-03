@@ -1,10 +1,11 @@
-package patagonia;
+package patagonia.model;
+
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
     private String nombre;
     private String password;
-    private String rol; // "Gerente" o "Asistente"
+    private String rol;
     
     public Usuario(String nombre, String password, String rol ) {
         this.nombre = nombre;
@@ -13,7 +14,6 @@ public class Usuario implements Serializable {
 
     }
 
-    // Getters necesarios para el LoginController
     public String getNombre() {
         return nombre; }
     public String getPassword() {

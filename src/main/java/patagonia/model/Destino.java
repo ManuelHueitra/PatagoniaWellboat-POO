@@ -1,4 +1,4 @@
-package patagonia;
+package patagonia.model;
 
 import java.io.Serializable;
 
@@ -23,6 +23,10 @@ public Destino(String nombre, int precioPasaje, int precioEncomiendaKg) {
 
     public int getPrecioEncomiendaKg() {
         return precioEncomiendaKg;
+    }
+    @Override
+    public String toString() {
+        return nombre;
     }
 }
 

@@ -1,4 +1,4 @@
-package patagonia;
+package patagonia.model;
 
 public class WellboatGranCapacidad extends Embarcacion {
     public WellboatGranCapacidad(String patente) {

@@ -1,4 +1,4 @@
-package patagonia;
+package patagonia.model;
 
 public class FerryMediano extends Embarcacion {
     public FerryMediano(String patente) {

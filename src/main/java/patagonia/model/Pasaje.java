@@ -1,4 +1,5 @@
-package patagonia;
+package patagonia.model;
+
 import java.io.Serializable;
 
 public class Pasaje implements Serializable {

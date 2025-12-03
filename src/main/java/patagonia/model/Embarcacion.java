@@ -1,4 +1,5 @@
-package patagonia;
+package patagonia.model;
+
 import java.io.Serializable;
 // clase Embarcacion padre
 public abstract class Embarcacion implements Serializable {
