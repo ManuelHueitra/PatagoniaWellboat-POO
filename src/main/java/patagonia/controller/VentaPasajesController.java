@@ -36,105 +36,67 @@ public class VentaPasajesController {
 
     @FXML
     public void initialize() {
-        // Cargar destinos
         ObservableList<Destino> misDestinos = FXCollections.observableArrayList(Main.listaDestinos);
         cmbDestino.setItems(misDestinos);
-        
-        // Recalcular precio al cambiar destino
         cmbDestino.setOnAction(e -> calcularTotal());
     }
 
     @FXML
     void abrirMapaAsientos(ActionEvent event) {
-        // validar que tengamos fecha y destino para saber que viaje buscar
         if (dateFecha.getValue() == null || cmbDestino.getValue() == null) {
-            mostrarAlerta("Atencion", "Por favor selecciona Fecha y Destino antes de ver los asientos.");
+            mostrarAlerta("Atención", "Selecciona Fecha y Destino antes de ver los asientos.");
+            return;
+        }
+        if (grupoBarcos.getSelectedToggle() == null) {
+            mostrarAlerta("Atención", "Debes seleccionar un tipo de Barco primero.");
             return;
         }
 
+        String rutaFxml = "";
+        String tituloVentana = "";
+
+        if (btnCatamaran.isSelected()) {
+            rutaFxml = "/patagonia/view/Barco_Catamaran.fxml";
+            tituloVentana = "Asientos - Catamarán";
+        } else if (btnFerry.isSelected()) {
+            rutaFxml = "/patagonia/view/Barco_Ferry.fxml";
+            tituloVentana = "Asientos - Ferry";
+        } else if (btnWellboat.isSelected()) {
+            rutaFxml = "/patagonia/view/Barco_Wellboat.fxml";
+            tituloVentana = "Asientos - Wellboat";
+        }
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/patagonia/view/Barco_Wellboat.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFxml));
             Parent root = loader.load();
 
-            // Obtener el controlador del barco y pasarle los datos
             BarcoWellboatController controllerBarco = loader.getController();
-            
-            // buscamos el viaje actual si existe para mostrar los ocupados en rojo
             Viaje viajeActual = buscarViajeActual();
+            
             controllerBarco.inicializarDatos(viajeActual, this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Selección de Asiento");
+            stage.setTitle(tituloVentana);
             stage.initModality(Modality.APPLICATION_MODAL); 
             stage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "No se pudo abrir el mapa de asientos. Verifica que Barco_Wellboat.fxml exista.");
+            mostrarAlerta("Error", "No se pudo abrir el mapa: " + rutaFxml + "\nVerifica que el archivo exista en src/main/resources/patagonia/view/");
         }
     }
 
     public void recibirAsientoSeleccionado(String asiento) {
         this.asientoSeleccionado = asiento;
-        
         mostrarAlerta("Asiento Seleccionado", "Has elegido el asiento: " + asiento);
-        
         if (txtAsientoElegido != null) {
             txtAsientoElegido.setText(asiento);
         }
     }
 
     @FXML
-    void seleccionarBarco(ActionEvent event) {
-        calcularTotal();
-    }
-    
-    @FXML
-    void aplicarDescuento(ActionEvent event) {
-        if (precioCalculado > 0) {
-            int descuento = (int) (precioCalculado * 0.10);
-            int totalConDescuento = precioCalculado - descuento;
-            txtTotal.setText("$ " + totalConDescuento);
-        }
-    }
-
-    @FXML
-    void quitarDescuento(ActionEvent event) {
-        calcularTotal(); // Recalcula el precio original
-    }
-
-    private void calcularTotal() {
-        if (cmbDestino.getValue() == null) return;
-        
-        int precioBase = cmbDestino.getValue().getPrecioPasaje();
-        txtTarifa.setText("$ " + precioBase);
-
-        int recargo = 0;
-        if (btnFerry.isSelected()) recargo = 5000;
-        else if (btnWellboat.isSelected()) recargo = 10000;
-
-        this.precioCalculado = precioBase + recargo;
-        txtTotal.setText("$ " + precioCalculado);
-    }
-
-    private Viaje buscarViajeActual() {
-        LocalDate fecha = dateFecha.getValue();
-        Destino destino = cmbDestino.getValue();
-        
-        if (fecha == null || destino == null) return null;
-
-        for (Viaje v : Main.listaViajes) {
-            if (v.getFecha().equals(fecha) && v.getDestino().getNombre().equals(destino.getNombre())) {
-                return v;
-            }
-        }
-        return null;
-    }
-
-    @FXML
     void realizarVenta(ActionEvent event) {
-        // Validaciones
         if (txtNombre.getText().isEmpty() || txtRut.getText().isEmpty() || 
             cmbDestino.getValue() == null || grupoBarcos.getSelectedToggle() == null || 
             dateFecha.getValue() == null) {
@@ -156,39 +118,74 @@ public class VentaPasajesController {
         
         if (viajeCorrespondiente == null) {
             Embarcacion barcoDeLaFlota = buscarBarcoDisponible();
-            
             if (barcoDeLaFlota == null) {
                 mostrarAlerta("Error de Flota", "No hay barcos disponibles de ese tipo en la flota.");
                 return;
             }
-            
             viajeCorrespondiente = new Viaje(fecha, "10:00", barcoDeLaFlota, destino);
             Main.listaViajes.add(viajeCorrespondiente);
         }
 
-        // Crear Pasaje
-        Cliente cliente = new Cliente(nombre, rut, 0); // 0 viajes
-        
+        Cliente cliente = new Cliente(nombre, rut, 0); 
         Pasaje nuevoPasaje = new Pasaje(asientoSeleccionado, precioCalculado, cliente); 
 
         if (viajeCorrespondiente.agregarPasaje(nuevoPasaje)) {
             Main.guardarCambios();
             irPantallaFinalizacion();
         } else {
-            mostrarAlerta("Error", "No se pudo vender: el barco para esta fecha está lleno.");
+            mostrarAlerta("Error", "No se pudo vender: el barco está lleno.");
         }
+    }
+
+    private Viaje buscarViajeActual() {
+        LocalDate fecha = dateFecha.getValue();
+        Destino destino = cmbDestino.getValue();
+        if (fecha == null || destino == null) return null;
+
+        for (Viaje v : Main.listaViajes) {
+            if (v.getFecha().equals(fecha) && v.getDestino().getNombre().equals(destino.getNombre())) {
+                if (validarTipoBarco(v.getEmbarcacionAsignada())) {
+                    return v;
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean validarTipoBarco(Embarcacion e) {
+        if (btnCatamaran.isSelected() && e instanceof CatamaranLiviano) return true;
+        if (btnFerry.isSelected() && e instanceof FerryMediano) return true;
+        if (btnWellboat.isSelected() && e instanceof WellboatGranCapacidad) return true;
+        return false;
     }
 
     private Embarcacion buscarBarcoDisponible() {
         for (Embarcacion e : Main.listaEmbarcaciones) {
-            if (btnCatamaran.isSelected() && e instanceof CatamaranLiviano) 
-                return e;
-            if (btnFerry.isSelected() && e instanceof FerryMediano) 
-                return e;
-            if (btnWellboat.isSelected() && e instanceof WellboatGranCapacidad) 
-                return e;
+            if (validarTipoBarco(e)) return e;
         }
         return null;
+    }
+
+    @FXML void seleccionarBarco(ActionEvent event) { calcularTotal(); }
+    
+    @FXML void aplicarDescuento(ActionEvent event) {
+        if (precioCalculado > 0) {
+            int descuento = (int) (precioCalculado * 0.10);
+            txtTotal.setText("$ " + (precioCalculado - descuento));
+        }
+    }
+
+    @FXML void quitarDescuento(ActionEvent event) { calcularTotal(); }
+
+    private void calcularTotal() {
+        if (cmbDestino.getValue() == null) return;
+        int precioBase = cmbDestino.getValue().getPrecioPasaje();
+        txtTarifa.setText("$ " + precioBase);
+        int recargo = 0;
+        if (btnFerry.isSelected()) recargo = 5000;
+        else if (btnWellboat.isSelected()) recargo = 10000;
+        this.precioCalculado = precioBase + recargo;
+        txtTotal.setText("$ " + precioCalculado);
     }
 
     private void irPantallaFinalizacion() {
@@ -199,8 +196,7 @@ public class VentaPasajesController {
         } catch (IOException e) { e.printStackTrace(); }
     }
 
-    @FXML
-    void volverMenu(ActionEvent event) {
+    @FXML void volverMenu(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuAsistente.fxml"));
             Stage stage = (Stage) txtNombre.getScene().getWindow();
