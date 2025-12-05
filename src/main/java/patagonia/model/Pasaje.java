@@ -3,16 +3,16 @@ package patagonia.model;
 import java.io.Serializable;
 
 public class Pasaje implements Serializable {
-    private int numeroAsiento;
+    private String numeroAsiento;
     private int preciofinal;
     private Cliente cliente;
 
-    public Pasaje(int numeroAsiento, int preciofinal, Cliente cliente) {
+    public Pasaje(String numeroAsiento, int preciofinal, Cliente cliente) {
         this.numeroAsiento = numeroAsiento;
         this.preciofinal = preciofinal;
         this.cliente = cliente;
     }
-    public int getNumeroAsiento() {
+    public String getNumeroAsiento() {
         return numeroAsiento;
     }
     public int getPreciofinal() {
