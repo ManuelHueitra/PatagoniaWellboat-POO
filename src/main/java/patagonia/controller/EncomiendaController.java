@@ -94,7 +94,7 @@ public class EncomiendaController {
     @FXML
     void volverMenu(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/Menu_Asistente.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuAsistente.fxml"));
             Stage stage = (Stage) txtNombre.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) { e.printStackTrace(); }
