@@ -15,39 +15,39 @@
          </font>
       </Label>
 
-                  <Label fx:id="lblEstado" layoutX="128.0" layoutY="117.0" prefHeight="30.0" prefWidth="172.0" text="EN TRANSITO" textFill="#a5d6a7">
+                  <Label fx:id="lblEstado" layoutX="74.0" layoutY="182.0" prefHeight="30.0" prefWidth="172.0" text="EN TRANSITO" textFill="#a5d6a7">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="179.0" text="Fecha:" textFill="#e0f2f1">
+      <Label layoutX="73.0" layoutY="248.0" text="Fecha:" textFill="#e0f2f1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblFecha" layoutX="136.0" layoutY="179.0" text="--/--/----" textFill="WHITE">
+      <Label fx:id="lblFecha" layoutX="147.0" layoutY="248.0" text="--/--/----" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
 
                                                       <Label text="" />
-      <Label layoutX="67.0" layoutY="233.0" text="Destino:" textFill="#e0f2f1">
+      <Label layoutX="72.0" layoutY="293.0" text="Destino:" textFill="#e0f2f1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblDestino" layoutX="152.0" layoutY="233.0" text="..." textFill="WHITE">
+      <Label fx:id="lblDestino" layoutX="153.0" layoutY="293.0" text="..." textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblMonto" layoutX="141.0" layoutY="276.0" text="Calculando" textFill="#ffecb3">
+      <Label fx:id="lblMonto" layoutX="147.0" layoutY="337.0" text="Calculando" textFill="#ffecb3">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="267.0" prefHeight="44.0" prefWidth="73.0" text="Total:" textFill="#e0f2f1">
+      <Label layoutX="74.0" layoutY="328.0" prefHeight="44.0" prefWidth="73.0" text="Total:" textFill="#e0f2f1">
          <font>
             <Font size="18.0" />
          </font>
@@ -61,6 +61,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="74.0" layoutY="110.0" prefHeight="30.0" prefWidth="172.0" text="Cantidad de viajes :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="113.0" prefHeight="17.0" prefWidth="38.0" text="..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>
