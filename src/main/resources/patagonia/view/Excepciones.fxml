@@ -9,39 +9,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 100%, #2ecc71, #004d40);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.ExcepcionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.ExcepcionesController">
    <children>
-      
-      <Label layoutX="220.0" layoutY="25.0" text="Excepciones" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <effect>
-            <DropShadow color="#00000080" />
-         </effect>
-      </Label>
 
-      <TextField fx:id="txtNombre" layoutX="39.0" layoutY="85.0" prefHeight="40.0" prefWidth="300.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <DatePicker fx:id="dateFecha" layoutX="66.0" layoutY="200.0" prefHeight="50.0" prefWidth="350.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-font-size: 14px; -fx-background-radius: 7; -fx-border-radius: 7;" />
+
+      <TextField fx:id="txtHora" alignment="CENTER" layoutX="466.0" layoutY="200.0" prefHeight="50.0" prefWidth="180.0" promptText="Hora: XX:XX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 7; -fx-background-radius: 7;">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </TextField>
 
-      <TextField fx:id="txtRut" alignment="CENTER" layoutX="360.0" layoutY="85.0" prefHeight="40.0" prefWidth="180.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-         <font>
-            <Font name="Times New Roman Bold" size="14.0" />
-         </font>
-      </TextField>
-
-      <DatePicker fx:id="dateFecha" layoutX="39.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-font-size: 14px;" />
-
-      <TextField fx:id="txtHora" alignment="CENTER" layoutX="320.0" layoutY="150.0" prefHeight="40.0" prefWidth="150.0" promptText="Hora: XX:XX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-         <font>
-            <Font name="Times New Roman Bold" size="14.0" />
-         </font>
-      </TextField>
-
-      <Button fx:id="btnNoCobro" layoutX="80.0" layoutY="260.0" mnemonicParsing="false" onAction="#registrarNoCobro" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(#4286f4, #191970); -fx-text-fill: white; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2;" text="No cobro">
+      <Button fx:id="btnListo" defaultButton="true" layoutX="360.0" layoutY="412.0" mnemonicParsing="false" onAction="#registrarExcepcion" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 10; -fx-border-color: #2ecc71; -fx-border-radius: 10; -fx-border-width: 2;" text="Listo">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -53,19 +32,7 @@
          </effect>
       </Button>
 
-      <Button fx:id="btnListo" defaultButton="true" layoutX="340.0" layoutY="260.0" mnemonicParsing="false" onAction="#registrarExcepcion" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 10; -fx-border-color: #2ecc71; -fx-border-radius: 10; -fx-border-width: 2;" text="Listo">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow color="#00000080" />
-         </effect>
-      </Button>
-
-      <Button layoutX="45.0" layoutY="350.0" mnemonicParsing="false" onAction="#volverMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver al inicio">
+      <Button layoutX="39.0" layoutY="422.0" mnemonicParsing="false" onAction="#volverMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver al inicio">
          <font>
              <Font size="14.0" />
          </font>
@@ -73,6 +40,24 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <TextField fx:id="txtNombre" layoutX="66.0" layoutY="105.0" prefHeight="50.0" prefWidth="350.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtRut" alignment="CENTER" layoutX="458.0" layoutY="105.0" prefHeight="50.0" prefWidth="343.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER" layoutX="316.0" layoutY="25.0" prefHeight="42.0" prefWidth="269.0" style="-fx-background-color: #4A9468; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-border-width: 2px;" text="Excepciones">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow color="#00000080" />
+         </effect>
+      </Label>
 
    </children>
 </AnchorPane>

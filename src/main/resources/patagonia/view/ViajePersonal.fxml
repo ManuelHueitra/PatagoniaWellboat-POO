@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -10,138 +9,119 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="550.0" prefWidth="650.0" spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.VentaPasajesController">
-   
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.VentaPasajesController">
    <children>
-      
-      <HBox alignment="CENTER" spacing="15.0">
-         <children>
-            <TextField fx:id="txtNombre" prefHeight="40.0" prefWidth="350.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
-               <font><Font name="System Bold" size="14.0" /></font>
-            </TextField>
-         
-            <TextField fx:id="txtRut" alignment="CENTER" prefHeight="40.0" prefWidth="120.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
-               <font><Font name="System Bold" size="14.0" /></font>
-            </TextField>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER_LEFT" maxWidth="485.0">
-         <children>
-            <DatePicker fx:id="dateFecha" prefHeight="40.0" prefWidth="250.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 14px;" />
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER" spacing="15.0">
-         <children>
-            <ComboBox fx:id="cmbDestino" prefHeight="50.0" prefWidth="230.0" promptText="Ingrese el destino" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;" />
-            
-            <TextField fx:id="txtTarifa" alignment="CENTER" editable="false" prefHeight="50.0" prefWidth="230.0" promptText="Tarifa Base" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
-               <font><Font name="System Bold" size="18.0" /></font>
-            </TextField>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER" spacing="10.0">
-         <children>
-            <fx:define><ToggleGroup fx:id="grupoBarcos" /></fx:define>
-            
-            <ToggleButton fx:id="btnCatamaran" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Catamaran" toggleGroup="$grupoBarcos">
-               <font><Font name="System Bold" size="14.0" /></font>
-               <cursor><Cursor fx:constant="HAND" /></cursor>
-            </ToggleButton>
-
-            <ToggleButton fx:id="btnFerry" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ferry" toggleGroup="$grupoBarcos">
-               <font><Font name="System Bold" size="14.0" /></font>
-               <cursor><Cursor fx:constant="HAND" /></cursor>
-            </ToggleButton>
-
-            <ToggleButton fx:id="btnWellboat" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Wellboat" toggleGroup="$grupoBarcos">
-               <font><Font name="System Bold" size="14.0" /></font>
-               <cursor><Cursor fx:constant="HAND" /></cursor>
-            </ToggleButton>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER" spacing="15.0">
-         <children>
-            <Button fx:id="btnAsientos" mnemonicParsing="false" onAction="#abrirMapaAsientos" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #ff9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2px;" text="Seleccionar Asiento">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow color="#00000066" offsetY="3.0" />
-               </effect>
-            </Button>
-            
-            <Label text="Asiento:" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            
-            <TextField fx:id="txtAsientoElegido" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #eeeeee; -fx-border-color: black; -fx-border-width: 2px;" text="---">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TextField>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER" spacing="10.0">
-         <children>
-           
-            <TextField fx:id="txtMontoInicial" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="120.0" promptText="Subtotal" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-               <font><Font name="System Bold" size="14.0" /></font>
-            </TextField>
-
-            <VBox alignment="CENTER" spacing="2.0">
-               <children>
-                   <Label text="¿Descuento 10%?" textFill="WHITE">
-                     <font><Font name="System Bold" size="12.0" /></font>
-                  </Label>
-                  <HBox spacing="5.0">
-                     <Button fx:id="btnSi" mnemonicParsing="false" onAction="#aplicarDescuento" prefHeight="35.0" prefWidth="50.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Sí">
-                        <font><Font name="System Bold" size="14.0" /></font>
-                     </Button>
-                     <Button fx:id="btnNo" mnemonicParsing="false" onAction="#quitarDescuento" prefHeight="35.0" prefWidth="50.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="No">
-                        <font><Font name="System Bold" size="14.0" /></font>
-                     </Button>
-                  </HBox>
-               </children>
-            </VBox>
-
-            <TextField fx:id="txtTotal" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="120.0" promptText="Total" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-               <font><Font name="System Bold" size="16.0" /></font>
-            </TextField>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER_RIGHT" maxWidth="500.0">
-         <children>
-            <Button fx:id="btnVender" defaultButton="true" mnemonicParsing="false" onAction="#realizarVenta" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #66bb6a; -fx-border-radius: 15; -fx-border-width: 2;" text="Aceptar">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow color="#000000" height="10.0" radius="4.5" width="10.0" />
-               </effect>
-            </Button>
-         </children>
-      </HBox>
-
-      <Button mnemonicParsing="false" onAction="#volverMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver" />
-
-   </children>
    
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+                  <TextField fx:id="txtRut" alignment="CENTER" layoutX="450.0" layoutY="70.0" prefHeight="50.0" prefWidth="343.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNombre" layoutX="56.0" layoutY="70.0" prefHeight="50.0" prefWidth="350.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+       <DatePicker fx:id="dateFecha" layoutX="450.0" layoutY="149.0" prefHeight="50.0" prefWidth="230.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 14px;" />
+      <ComboBox fx:id="cmbDestino" layoutX="56.0" layoutY="149.0" prefHeight="50.0" prefWidth="230.0" promptText="Ingrese el destino" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;" />
+      
+                  <TextField fx:id="txtTarifa" alignment="CENTER" editable="false" layoutX="63.0" layoutY="406.0" prefHeight="50.0" prefWidth="230.0" promptText="Tarifa Base" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+
+            <ToggleButton fx:id="btnFerry" layoutX="340.0" layoutY="250.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ferry">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <toggleGroup>
+            <ToggleGroup fx:id="grupoBarcos" />
+         </toggleGroup>
+      </ToggleButton>
+      
+                  <ToggleButton fx:id="btnCatamaran" layoutX="56.0" layoutY="250.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Catamaran" toggleGroup="$grupoBarcos">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+
+            <ToggleButton fx:id="btnWellboat" layoutX="613.0" layoutY="250.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Wellboat" toggleGroup="$grupoBarcos">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+
+            <TextField fx:id="txtTotal" alignment="CENTER" editable="false" layoutX="594.0" layoutY="407.0" prefHeight="50.0" prefWidth="230.0" promptText="Total" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </TextField>
+       <Label layoutX="401.0" layoutY="391.0" text="¿Descuento 10%?" textFill="WHITE">
+          <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSi" layoutX="405.0" layoutY="414.0" mnemonicParsing="false" onAction="#aplicarDescuento" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Sí">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+
+            <Button layoutX="40.0" layoutY="480.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnVender" defaultButton="true" layoutX="391.0" layoutY="480.0" mnemonicParsing="false" onAction="#realizarVenta" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #66bb6a; -fx-border-radius: 15; -fx-border-width: 2;" text="Aceptar">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow color="#000000" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button fx:id="btnAsientos" layoutX="63.0" layoutY="342.0" mnemonicParsing="false" onAction="#abrirMapaAsientos" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #66bb6a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2px;" text="Seleccionar Asiento">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow color="#00000066" offsetY="3.0" />
+         </effect>
+      </Button>
+      <Label layoutX="340.0" layoutY="352.0" text="Asiento:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAsientoElegido" alignment="CENTER" editable="false" layoutX="410.0" layoutY="342.0" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: transparent; -fx-border-width: 2px;" text="---">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="709.0" layoutY="23.0" text="Cantidad de viajes :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="829.0" layoutY="23.0" prefHeight="17.0" prefWidth="33.0" text="..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

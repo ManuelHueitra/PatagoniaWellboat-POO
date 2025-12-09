@@ -10,55 +10,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 100%, #2ecc71, #004d40);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.EncomiendaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.EncomiendaController">
    <children>
       
-      <Label layoutX="220.0" layoutY="14.0" text="Encomiendas" textFill="WHITE">
+      <Label layoutX="256.0" layoutY="14.0" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="Times New Roman Bold" size="24.0" />
          </font>
          <effect>
             <DropShadow color="#00000080" />
          </effect>
       </Label>
 
-      <TextField fx:id="txtNombre" layoutX="40.0" layoutY="70.0" prefHeight="40.0" prefWidth="350.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <TextField fx:id="txtOrigen" editable="false" layoutX="40.0" layoutY="227.0" prefHeight="50.0" prefWidth="560.0" promptText="Punto de partida" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 7; -fx-background-radius: 7;" text="Puerto Montt (Chinquihue)">
          <font><Font name="System Bold" size="14.0" /></font>
       </TextField>
 
-      <TextField fx:id="txtRut" alignment="CENTER" layoutX="420.0" layoutY="70.0" prefHeight="40.0" prefWidth="180.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <ComboBox fx:id="cmbDestino" layoutX="40.0" layoutY="293.0" prefHeight="50.0" prefWidth="560.0" promptText="Seleccione Destino" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 7; -fx-background-radius: 7; -fx-font-weight: bold; -fx-font-size: 14px;" />
+
+      <TextField fx:id="txtPeso" alignment="CENTER" layoutX="40.0" layoutY="372.0" prefHeight="40.0" prefWidth="100.0" promptText="Kg" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
          <font><Font name="System Bold" size="14.0" /></font>
       </TextField>
 
-      <DatePicker fx:id="dateFecha" layoutX="40.0" layoutY="130.0" prefHeight="40.0" prefWidth="250.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-font-size: 14px;" />
-
-      <TextField fx:id="txtHora" alignment="CENTER" layoutX="320.0" layoutY="130.0" prefHeight="40.0" prefWidth="150.0" promptText="Hora: XX:XX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <TextField fx:id="txtTarifa" alignment="CENTER" editable="false" layoutX="185.0" layoutY="372.0" prefHeight="40.0" prefWidth="180.0" promptText="Tarifa x Kg" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
          <font><Font name="System Bold" size="14.0" /></font>
       </TextField>
 
-      <TextField fx:id="txtOrigen" editable="false" layoutX="40.0" layoutY="190.0" prefHeight="40.0" prefWidth="560.0" promptText="Punto de partida" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Puerto Montt (Chinquihue)">
-         <font><Font name="System Bold" size="14.0" /></font>
-      </TextField>
-
-      <ComboBox fx:id="cmbDestino" layoutX="40.0" layoutY="250.0" prefHeight="40.0" prefWidth="560.0" promptText="Seleccione Destino" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" />
-
-      <TextField fx:id="txtPeso" alignment="CENTER" layoutX="40.0" layoutY="310.0" prefHeight="40.0" prefWidth="100.0" promptText="Kg" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-         <font><Font name="System Bold" size="14.0" /></font>
-      </TextField>
-
-      <Label layoutX="155.0" layoutY="315.0" text="X" textFill="BLACK">
-         <font><Font name="System Bold" size="24.0" /></font>
-      </Label>
-
-      <TextField fx:id="txtTarifa" alignment="CENTER" editable="false" layoutX="190.0" layoutY="310.0" prefHeight="40.0" prefWidth="180.0" promptText="Tarifa x Kg" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
-         <font><Font name="System Bold" size="14.0" /></font>
-      </TextField>
-
-      <TextField fx:id="txtTotal" alignment="CENTER" editable="false" layoutX="400.0" layoutY="310.0" prefHeight="40.0" prefWidth="200.0" promptText="Monto Total" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <TextField fx:id="txtTotal" alignment="CENTER" editable="false" layoutX="425.0" layoutY="371.0" prefHeight="40.0" prefWidth="200.0" promptText="Monto Total" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;">
          <font><Font name="System Bold" size="18.0" /></font>
       </TextField>
 
-      <Button fx:id="btnAceptar" defaultButton="true" layoutX="250.0" layoutY="380.0" mnemonicParsing="false" onAction="#registrarEncomienda" prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #004d40; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #2ecc71; -fx-border-radius: 15; -fx-border-width: 2;" text="Aceptar">
+      <Button fx:id="btnAceptar" defaultButton="true" layoutX="375.0" layoutY="476.0" mnemonicParsing="false" onAction="#registrarEncomienda" prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #2ecc71; -fx-border-radius: 15; -fx-border-width: 2;" text="Aceptar">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -70,11 +52,38 @@
          </effect>
       </Button>
 
-      <Button layoutX="40.0" layoutY="390.0" mnemonicParsing="false" onAction="#volverMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver">
+      <Button layoutX="40.0" layoutY="479.0" mnemonicParsing="false" onAction="#volverMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-underline: true;" text="Volver">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
+      <Label alignment="CENTER" layoutX="286.0" layoutY="21.0" prefHeight="42.0" prefWidth="269.0" style="-fx-background-color: #4A9468; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-border-width: 2px;" text="Encomiendas">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow color="#00000080" />
+         </effect>
+      </Label>
+      <TextField fx:id="txtNombre" layoutX="40.0" layoutY="85.0" prefHeight="50.0" prefWidth="350.0" promptText="Ingrese nombre del cliente" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtRut" alignment="CENTER" layoutX="460.0" layoutY="80.0" prefHeight="50.0" prefWidth="343.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <DatePicker fx:id="dateFecha" layoutX="40.0" layoutY="150.0" prefHeight="50.0" prefWidth="230.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 14px;" />
+      <TextField fx:id="txtHora" alignment="CENTER" layoutX="460.0" layoutY="150.0" prefHeight="50.0" prefWidth="180.0" promptText="Hora: XX:XX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 7; -fx-background-radius: 7;">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </TextField>
 
    </children>
 </AnchorPane>

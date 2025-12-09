@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 100%, #2ecc71, #004d40);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.LoginController">
    
    <children>
-      <Label layoutX="145.0" layoutY="35.0" text="Acceso Colaboradores" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="152.0" layoutY="35.0" prefHeight="48.0" prefWidth="297.0" style="-fx-background-color: #a5d6a7; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 2px; -fx-border-color: black;" text="Acceso Colaboradores">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="Times New Roman Bold" size="20.0" />
          </font>
          <effect>
             <DropShadow color="#00000080" />
@@ -23,15 +23,13 @@
 
       <TextField fx:id="txtUsuario" alignment="CENTER" layoutX="175.0" layoutY="125.0" prefHeight="40.0" prefWidth="250.0" promptText="Nombre de Usuario" style="-fx-background-color: #e8f5e9; -fx-background-radius: 10; -fx-border-color: #1b5e20; -fx-border-radius: 10;">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
 
-      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="175.0" layoutY="190.0" 
-      onAction="#btnIngresarAction" 
-      prefHeight="40.0" prefWidth="250.0" promptText="Código de Acceso" style="-fx-background-color: #e8f5e9; -fx-background-radius: 10;-fx-border-color: #1b5e20; -fx-border-radius: 10;">
+      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="175.0" layoutY="190.0" onAction="#btnIngresarAction" prefHeight="40.0" prefWidth="250.0" promptText="Código de Acceso" style="-fx-background-color: #e8f5e9; -fx-background-radius: 10;-fx-border-color: #1b5e20; -fx-border-radius: 10;">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </PasswordField>
 
@@ -44,7 +42,7 @@
          </effect>
       </Button>
       
-      <Button fx:id="btnVolver" layoutX="235.0" layoutY="330.0" mnemonicParsing="false" onAction="#volverInicio" style="-fx-background-color: transparent; -fx-text-fill: #e0f2f1; -fx-underline: true;" text="Volver al Inicio">
+      <Button fx:id="btnVolver" layoutX="254.0" layoutY="338.0" mnemonicParsing="false" onAction="#volverInicio" style="-fx-background-color: transparent; -fx-text-fill: #e0f2f1; -fx-underline: true;" text="Volver al Inicio" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
