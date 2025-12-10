@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.ClienteLoginController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.ClienteLoginController">
    <children>
       <Label alignment="CENTER" layoutX="300.0" layoutY="61.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #a5d6a7; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px;" text="Bienvenido a Wellboat">
          <font>

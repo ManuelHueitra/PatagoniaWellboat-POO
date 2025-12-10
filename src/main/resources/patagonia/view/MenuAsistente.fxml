@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.MenuAsistenteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.MenuAsistenteController">
    <children>
 
       <Label alignment="CENTER" layoutX="316.0" layoutY="39.0" prefHeight="42.0" prefWidth="269.0" style="-fx-background-color: #a5d6a7; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-border-width: 2px;" text="Menú Asistente">
@@ -18,7 +18,8 @@
             <DropShadow color="#00000080" />
          </effect>
       </Label>
-      <Button fx:id="btnViajePersonal1" layoutX="323.0" layoutY="132.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Viaje personal">
+      
+      <Button fx:id="btnViajePersonal" layoutX="323.0" layoutY="132.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Viaje personal">
          <font>
             <Font name="Tahoma Bold" size="18.0" />
          </font>
@@ -26,7 +27,8 @@
             <DropShadow color="#00000066" offsetY="3.0" />
          </effect>
       </Button>
-      <Button fx:id="btnViajePersonal11" layoutX="324.0" layoutY="207.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Encomiendas">
+      
+      <Button fx:id="btnEncomiendas" layoutX="324.0" layoutY="207.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Encomiendas">
          <font>
             <Font name="Tahoma Bold" size="18.0" />
          </font>
@@ -34,7 +36,8 @@
             <DropShadow color="#00000066" offsetY="3.0" />
          </effect>
       </Button>
-      <Button fx:id="btnViajePersonal111" layoutX="324.0" layoutY="289.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Excepciones">
+      
+      <Button fx:id="btnExcepciones" layoutX="324.0" layoutY="289.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="255.0" style="-fx-background-color: #00d2a0; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2px; -fx-cursor: hand;" text="Excepciones">
          <font>
             <Font name="Tahoma Bold" size="18.0" />
          </font>
@@ -42,7 +45,8 @@
             <DropShadow color="#00000066" offsetY="3.0" />
          </effect>
       </Button>
-      <Button fx:id="btnVender" defaultButton="true" layoutX="380.0" layoutY="442.0" mnemonicParsing="false" onAction="#realizarVenta" prefHeight="54.0" prefWidth="143.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #66bb6a; -fx-border-radius: 15; -fx-border-width: 2;" text="Salir">
+      
+      <Button fx:id="btnSalir" defaultButton="true" layoutX="380.0" layoutY="442.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="54.0" prefWidth="143.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #66bb6a; -fx-border-radius: 15; -fx-border-width: 2;" text="Salir">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
