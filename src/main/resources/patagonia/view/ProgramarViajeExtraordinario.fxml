@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.VentaPasajesController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.VentaPasajesController">
    <children>
    
                   <TextField fx:id="txtRut" alignment="CENTER" layoutX="450.0" layoutY="70.0" prefHeight="50.0" prefWidth="343.0" promptText="RUT" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
@@ -27,12 +27,6 @@
       </TextField>
        <DatePicker fx:id="dateFecha" layoutX="450.0" layoutY="149.0" prefHeight="50.0" prefWidth="230.0" promptText="Fecha: XX/XX/XXXX" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 14px;" />
       <ComboBox fx:id="cmbDestino" layoutX="56.0" layoutY="149.0" prefHeight="50.0" prefWidth="230.0" promptText="Ingrese el destino" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;" />
-      
-                  <TextField fx:id="txtTarifa" alignment="CENTER" editable="false" layoutX="63.0" layoutY="406.0" prefHeight="50.0" prefWidth="230.0" promptText="Tarifa Base" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </TextField>
 
             <ToggleButton fx:id="btnFerry" layoutX="340.0" layoutY="250.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ferry">
          <font>
@@ -74,7 +68,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnSi" layoutX="405.0" layoutY="414.0" mnemonicParsing="false" onAction="#aplicarDescuento" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Sí">
+      <Button fx:id="btnSi" layoutX="394.0" layoutY="415.0" mnemonicParsing="false" onAction="#aplicarDescuento" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Sí">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -123,5 +117,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="btnSi1" layoutX="461.0" layoutY="415.0" mnemonicParsing="false" onAction="#aplicarDescuento" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5; -fx-background-radius: 5;" text="No">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
