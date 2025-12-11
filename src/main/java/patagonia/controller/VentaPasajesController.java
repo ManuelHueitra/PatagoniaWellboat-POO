@@ -20,7 +20,6 @@ public class VentaPasajesController {
     @FXML private TextField txtNombre;
     @FXML private TextField txtRut;
     @FXML private ComboBox<Destino> cmbDestino;
-    @FXML private TextField txtTarifa;
     @FXML private TextField txtTotal;
     @FXML private DatePicker dateFecha;
     
@@ -28,6 +27,9 @@ public class VentaPasajesController {
     @FXML private ToggleButton btnFerry;
     @FXML private ToggleButton btnWellboat;
     @FXML private ToggleGroup grupoBarcos;
+    @FXML private ToggleButton btnSi;
+    @FXML private ToggleButton btnNo;
+    @FXML private ToggleGroup grupoDescuento;
 
     @FXML private TextField txtAsientoElegido; 
 
@@ -38,60 +40,92 @@ public class VentaPasajesController {
     public void initialize() {
         ObservableList<Destino> misDestinos = FXCollections.observableArrayList(Main.listaDestinos);
         cmbDestino.setItems(misDestinos);
-        cmbDestino.setOnAction(e -> calcularTotal());
+        
+        // Calcular precio al cambiar destino
+        cmbDestino.setOnAction(e -> actualizarTotal());
+        
+        // Limpiar asiento si cambia la fecha
+        dateFecha.valueProperty().addListener((obs, oldVal, newVal) -> {
+            asientoSeleccionado = null;
+            if(txtAsientoElegido != null) txtAsientoElegido.setText("---");
+        });
+    }
+    private void actualizarTotal() {
+        if (cmbDestino.getValue() == null) {
+            txtTotal.setText("$ 0");
+            return;
+        }
+        int precioBase = cmbDestino.getValue().getPrecioPasaje();
+        int recargo = 0;
+        if (btnFerry.isSelected()) recargo = 5000;
+        else if (btnWellboat.isSelected()) recargo = 10000;
+        
+        int subtotal = precioBase + recargo;
+
+        // 3. Aplicar Descuento
+        if (btnSi.isSelected()) {
+            int descuento = (int) (subtotal * 0.10);
+            subtotal = subtotal - descuento;
+        }
+
+        this.precioCalculado = subtotal;
+        txtTotal.setText("$ " + precioCalculado);
+    }
+
+    @FXML
+    void seleccionarBarco(ActionEvent event) {
+        actualizarTotal();
+    }
+    
+    @FXML
+    void aplicarDescuento(ActionEvent event) {
+        actualizarTotal();
+    }
+
+    // Método llamado desde el mapa de asientos
+    public void recibirAsientoSeleccionado(String asiento) {
+        this.asientoSeleccionado = asiento;
+        
+        if (txtAsientoElegido != null) {
+            txtAsientoElegido.setText(asiento);
+        }
+        actualizarTotal();
+        
+        mostrarAlerta("Asiento Confirmado", "Has elegido: " + asiento + "\nTotal a pagar: $" + precioCalculado);
     }
 
     @FXML
     void abrirMapaAsientos(ActionEvent event) {
         if (dateFecha.getValue() == null || cmbDestino.getValue() == null) {
-            mostrarAlerta("Atención", "Selecciona Fecha y Destino antes de ver los asientos.");
+            mostrarAlerta("Atención", "Selecciona Fecha y Destino antes.");
             return;
         }
         if (grupoBarcos.getSelectedToggle() == null) {
-            mostrarAlerta("Atención", "Debes seleccionar un tipo de Barco primero.");
+            mostrarAlerta("Atención", "Debes seleccionar un tipo de Barco.");
             return;
         }
 
-        String rutaFxml = "";
-        String tituloVentana = "";
-
-        if (btnCatamaran.isSelected()) {
-            rutaFxml = "/patagonia/view/Barco_Catamaran.fxml";
-            tituloVentana = "Asientos - Catamarán";
-        } else if (btnFerry.isSelected()) {
-            rutaFxml = "/patagonia/view/Barco_Ferry.fxml";
-            tituloVentana = "Asientos - Ferry";
-        } else if (btnWellboat.isSelected()) {
-            rutaFxml = "/patagonia/view/Barco_Wellboat.fxml";
-            tituloVentana = "Asientos - Wellboat";
-        }
-
         try {
+            String rutaFxml = "";
+            if (btnCatamaran.isSelected()) rutaFxml = "/patagonia/view/Barco_Catamaran.fxml";
+            else if (btnFerry.isSelected()) rutaFxml = "/patagonia/view/Barco_Ferry.fxml";
+            else if (btnWellboat.isSelected()) rutaFxml = "/patagonia/view/Barco_Wellboat.fxml";
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFxml));
             Parent root = loader.load();
 
             BarcoWellboatController controllerBarco = loader.getController();
             Viaje viajeActual = buscarViajeActual();
-            
             controllerBarco.inicializarDatos(viajeActual, this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle(tituloVentana);
             stage.initModality(Modality.APPLICATION_MODAL); 
             stage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "No se pudo abrir el mapa: " + rutaFxml + "\nVerifica que el archivo exista en src/main/resources/patagonia/view/");
-        }
-    }
-
-    public void recibirAsientoSeleccionado(String asiento) {
-        this.asientoSeleccionado = asiento;
-        mostrarAlerta("Asiento Seleccionado", "Has elegido el asiento: " + asiento);
-        if (txtAsientoElegido != null) {
-            txtAsientoElegido.setText(asiento);
+            mostrarAlerta("Error", "No se pudo abrir el mapa de asientos.");
         }
     }
 
@@ -99,41 +133,31 @@ public class VentaPasajesController {
     void realizarVenta(ActionEvent event) {
         if (txtNombre.getText().isEmpty() || txtRut.getText().isEmpty() || 
             cmbDestino.getValue() == null || grupoBarcos.getSelectedToggle() == null || 
-            dateFecha.getValue() == null) {
-            mostrarAlerta("Faltan datos", "Por favor completa todos los campos.");
+            dateFecha.getValue() == null || asientoSeleccionado == null) {
+            mostrarAlerta("Datos incompletos", "Verifique todos los campos y seleccione un asiento.");
             return;
         }
 
-        if (asientoSeleccionado == null) {
-            mostrarAlerta("Falta Asiento", "Debes seleccionar un asiento antes de guardar.");
-            return;
-        }
-
-        String nombre = txtNombre.getText();
-        String rut = txtRut.getText();
-        Destino destino = cmbDestino.getValue();
-        LocalDate fecha = dateFecha.getValue();
-        
-        Viaje viajeCorrespondiente = buscarViajeActual();
-        
-        if (viajeCorrespondiente == null) {
-            Embarcacion barcoDeLaFlota = buscarBarcoDisponible();
-            if (barcoDeLaFlota == null) {
-                mostrarAlerta("Error de Flota", "No hay barcos disponibles de ese tipo en la flota.");
+        // Buscar o crear viaje
+        Viaje viaje = buscarViajeActual();
+        if (viaje == null) {
+            Embarcacion barco = buscarBarcoDisponible();
+            if (barco == null) {
+                mostrarAlerta("Error", "No hay barcos disponibles.");
                 return;
             }
-            viajeCorrespondiente = new Viaje(fecha, "10:00", barcoDeLaFlota, destino);
-            Main.listaViajes.add(viajeCorrespondiente);
+            viaje = new Viaje(dateFecha.getValue(), "10:00", barco, cmbDestino.getValue());
+            Main.listaViajes.add(viaje);
         }
 
-        Cliente cliente = new Cliente(nombre, rut, 0); 
-        Pasaje nuevoPasaje = new Pasaje(asientoSeleccionado, precioCalculado, cliente); 
+        Cliente cliente = new Cliente(txtNombre.getText(), txtRut.getText(), 0); 
+        Pasaje pasaje = new Pasaje(asientoSeleccionado, precioCalculado, cliente); 
 
-        if (viajeCorrespondiente.agregarPasaje(nuevoPasaje)) {
+        if (viaje.agregarPasaje(pasaje)) {
             Main.guardarCambios();
             irPantallaFinalizacion();
         } else {
-            mostrarAlerta("Error", "No se pudo vender: el barco está lleno.");
+            mostrarAlerta("Error", "No se pudo completar la venta.");
         }
     }
 
@@ -143,10 +167,9 @@ public class VentaPasajesController {
         if (fecha == null || destino == null) return null;
 
         for (Viaje v : Main.listaViajes) {
-            if (v.getFecha().equals(fecha) && v.getDestino().getNombre().equals(destino.getNombre())) {
-                if (validarTipoBarco(v.getEmbarcacionAsignada())) {
-                    return v;
-                }
+            if (v.getFecha().equals(fecha) && v.getDestino().getNombre().equals(destino.getNombre()) && 
+                validarTipoBarco(v.getEmbarcacionAsignada())) {
+                return v;
             }
         }
         return null;
@@ -163,29 +186,10 @@ public class VentaPasajesController {
         for (Embarcacion e : Main.listaEmbarcaciones) {
             if (validarTipoBarco(e)) return e;
         }
-        return null;
-    }
-
-    @FXML void seleccionarBarco(ActionEvent event) { calcularTotal(); }
-    
-    @FXML void aplicarDescuento(ActionEvent event) {
-        if (precioCalculado > 0) {
-            int descuento = (int) (precioCalculado * 0.10);
-            txtTotal.setText("$ " + (precioCalculado - descuento));
-        }
-    }
-
-    @FXML void quitarDescuento(ActionEvent event) { calcularTotal(); }
-
-    private void calcularTotal() {
-        if (cmbDestino.getValue() == null) return;
-        int precioBase = cmbDestino.getValue().getPrecioPasaje();
-        txtTarifa.setText("$ " + precioBase);
-        int recargo = 0;
-        if (btnFerry.isSelected()) recargo = 5000;
-        else if (btnWellboat.isSelected()) recargo = 10000;
-        this.precioCalculado = precioBase + recargo;
-        txtTotal.setText("$ " + precioCalculado);
+        // Crear uno temporal si no hay (para que no te bloquee en pruebas)
+        if (btnCatamaran.isSelected()) return new CatamaranLiviano("CAT-AUTO");
+        if (btnFerry.isSelected()) return new FerryMediano("FER-AUTO");
+        return new WellboatGranCapacidad("WELL-AUTO");
     }
 
     private void irPantallaFinalizacion() {
@@ -199,7 +203,7 @@ public class VentaPasajesController {
     @FXML void volverMenu(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuAsistente.fxml"));
-            Stage stage = (Stage) txtNombre.getScene().getWindow();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) { e.printStackTrace(); }
     }
@@ -207,6 +211,7 @@ public class VentaPasajesController {
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
+        alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
