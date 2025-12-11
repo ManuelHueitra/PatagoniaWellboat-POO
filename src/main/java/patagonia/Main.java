@@ -21,7 +21,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //carga el menú principal
         Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuPrincipal.fxml"));
         
         primaryStage.setTitle("Patagonia Wellboat - Acceso");
@@ -31,13 +30,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        // intentamos cargar los datos del archivo
         boolean cargado = GestorArchivos.cargarDatos(listaUsuarios, listaDestinos, listaEmbarcaciones, listaViajes, listaEncomiendas);
-
-        // si no existen datos previos creamos los por defecto
         if (!cargado) {
             cargarDatosIniciales();
-            guardarCambios(); // Crea el archivo por primera vez
+            guardarCambios();
         }
         launch(args);
     }
@@ -51,10 +47,8 @@ public class Main extends Application {
         
         listaUsuarios.add(new Gerente("admin", "admin123")); 
         
-        // creamos un Asistente 
         listaUsuarios.add(new Asistente("vendedor", "1234"));
         
-        // creamos un cliente de prueba
         listaUsuarios.add(new Usuario("cliente", "111", "Cliente"));
 
         // Destinos
@@ -70,7 +64,7 @@ public class Main extends Application {
         listaDestinos.add(new Destino("Chonchi", 40000, 10000));
         listaDestinos.add(new Destino("Melinka", 50000, 12000));
         listaDestinos.add(new Destino("Quellón", 50000, 12000));
-        // Flota inicial
+        // Flota
         listaEmbarcaciones.add(new CatamaranLiviano("CAT-001")); 
         listaEmbarcaciones.add(new CatamaranLiviano("CAT-002"));
         listaEmbarcaciones.add(new FerryMediano("FER-001"));

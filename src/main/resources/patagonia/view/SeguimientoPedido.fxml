@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.SeguimientoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.SeguimientoController">
    <children>
       
-                  <Label layoutX="337.0" layoutY="39.0" text="Estado de tu Pedido" textFill="WHITE">
+      <Label layoutX="337.0" layoutY="39.0" text="Estado de tu Pedido" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
 
-                  <Label fx:id="lblEstado" layoutX="74.0" layoutY="182.0" prefHeight="30.0" prefWidth="172.0" text="EN TRANSITO" textFill="#a5d6a7">
+      <Label fx:id="lblEstado" layoutX="74.0" layoutY="182.0" prefHeight="30.0" prefWidth="400.0" text="EN TRANSITO" textFill="#a5d6a7">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -31,7 +31,8 @@
          </font>
       </Label>
 
-                                                      <Label text="" />
+      <Label text="" />
+   
       <Label layoutX="72.0" layoutY="293.0" text="Destino:" textFill="#e0f2f1">
          <font>
             <Font size="18.0" />
@@ -53,7 +54,7 @@
          </font>
       </Label>
 
-                                          <Button fx:id="btnSalir" layoutX="374.0" layoutY="454.0" mnemonicParsing="false" onAction="#volverInicio" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-color: #2ecc71; -fx-border-radius: 20;" text="Volver">
+      <Button fx:id="btnSalir" layoutX="374.0" layoutY="454.0" mnemonicParsing="false" onAction="#volverInicio" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-color: #2ecc71; -fx-border-radius: 20;" text="Volver">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -62,11 +63,12 @@
          </cursor>
       </Button>
       <Label layoutX="74.0" layoutY="110.0" prefHeight="30.0" prefWidth="172.0" text="Cantidad de viajes :" textFill="WHITE">
-         <font>
+            <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="246.0" layoutY="113.0" prefHeight="17.0" prefWidth="38.0" text="..." textFill="WHITE">
+      
+      <Label fx:id="lblCantidadViajes" layoutX="246.0" layoutY="113.0" prefHeight="17.0" prefWidth="38.0" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

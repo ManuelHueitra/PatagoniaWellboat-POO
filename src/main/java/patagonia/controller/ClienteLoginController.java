@@ -13,54 +13,53 @@ import java.io.IOException;
 
 public class ClienteLoginController {
 
-    @FXML private TextField txtNombreCliente;
     @FXML private TextField txtRutCliente;
     @FXML private Button btnIngresar;
-
     @FXML
     void ingresarCliente(ActionEvent event) {
-        String nombre = txtNombreCliente.getText().trim();
+        if (txtRutCliente == null) {
+            System.out.println("Error: txtRutCliente es null. Revisa el fx:id en el FXML.");
+            return;
+        }
+
         String rut = txtRutCliente.getText().trim();
 
-        if (nombre.isEmpty() || rut.isEmpty()) {
-            mostrarAlerta("error", "escribe tu Nombre y RUT.");
-        } else {
-            
-            irPantallaSeguimiento(nombre, rut);
+        if (rut.isEmpty()) {
+            mostrarAlerta("Por favor ingrese su RUT.");
+            return;
         }
-    }
 
-    @FXML
-    void volverInicio(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuPrincipal.fxml"));
-            Stage stage = (Stage) txtNombreCliente.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void irPantallaSeguimiento(String nombre, String rut) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/patagonia/view/SeguimientoPedido.fxml"));
             Parent root = loader.load();
 
             SeguimientoController controller = loader.getController();
-            controller.cargarDatosCliente(nombre, rut);
+            controller.cargarDatosCliente("Cliente", rut);
 
-            Stage stage = (Stage) txtNombreCliente.getScene().getWindow();
+            Stage stage = (Stage) btnIngresar.getScene().getWindow();
             stage.setScene(new Scene(root));
-            
+            stage.setTitle("Estado del Pedido");
+
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("error", "No se pudo cargar la pantalla de seguimiento.");
+            mostrarAlerta("Error al cargar el sistema de seguimiento: " + e.getMessage());
+        }
+    }
+    @FXML
+    void volverInicio(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuPrincipal.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Atención");
+        alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
     }

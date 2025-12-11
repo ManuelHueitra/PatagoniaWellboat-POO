@@ -44,12 +44,14 @@ public class LoginController {
 
         if (encontrado) {
             mostrarMensaje("Acceso Concedido", "Bienvenido, " + usuarioLogueado.getNombre());
-            
-            if (usuarioLogueado.getRol().equalsIgnoreCase("Gerente") || 
-            usuarioLogueado.getRol().equalsIgnoreCase("Asistente")) {
-            irPantalla("/patagonia/view/MenuAsistente.fxml");
-            } else {
-                mostrarAlerta("Aviso", "Este menú es solo para personal.");
+            if (usuarioLogueado.getRol().equalsIgnoreCase("Gerente")) {
+                irPantalla("/patagonia/view/MenuGerente.fxml");
+            } 
+            else if (usuarioLogueado.getRol().equalsIgnoreCase("Asistente")) {
+                irPantalla("/patagonia/view/MenuAsistente.fxml");
+            } 
+            else {
+                mostrarAlerta("Aviso", "Rol no reconocido o sin acceso al sistema.");
             }
 
         } else {
@@ -70,8 +72,8 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); //error al no cargar la pantalla
-            mostrarAlerta("Error", "No se pudo cargar la pantalla: " + rutaFxml);
+            e.printStackTrace(); 
+            mostrarAlerta("Error Crítico", "No se pudo cargar la pantalla: " + rutaFxml + "\nVerifica que el archivo exista en resources.");
         }
     }
 

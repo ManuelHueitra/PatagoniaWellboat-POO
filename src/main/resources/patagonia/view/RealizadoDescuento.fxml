@@ -3,39 +3,63 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.FinalizacionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #009688, #004d40, #00251a);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patagonia.controller.ResumenVentasController">
    <children>
+      <Label layoutX="91.0" layoutY="46.0" text="Estado de Resumen de ventas diarias" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
       
-      <Label alignment="CENTER" layoutX="263.0" layoutY="170.0" prefHeight="50.0" prefWidth="400.0" text="¡Operación Exitosa!" textFill="WHITE">
+      <Label layoutX="91.0" layoutY="155.0" text="Cantidad total de ventas (Tickets + Encomiendas)" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
-         <effect>
-            <DropShadow color="#00000080" height="10.0" radius="4.5" width="10.0" />
-         </effect>
       </Label>
-
-      <Label fx:id="lblMensaje" alignment="CENTER" layoutX="213.0" layoutY="270.0" prefHeight="30.0" prefWidth="500.0" text="El descuento ha sido realizado." textFill="#e0f2f1">
+      <Label fx:id="lblCantidad" layoutX="91.0" layoutY="190.0" text="0" textFill="#ffecb3">
          <font>
-            <Font name="Times New Roman" size="18.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
 
-      <Button fx:id="btnRegresar" defaultButton="true" layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#volverMenuPrincipal" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-color: #2ecc71; -fx-border-radius: 15; -fx-border-width: 2;" text="Volver al Menú">
+      <Label layoutX="91.0" layoutY="240.0" text="Monto Total Recaudado" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow color="#00000080" offsetY="3.0" />
-         </effect>
+      </Label>
+      <Label fx:id="lblMonto" layoutX="91.0" layoutY="275.0" text="&#36; 0" textFill="#69f0ae">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+
+      <Label layoutX="66.0" layoutY="350.0" text="Filtrar por Embarcación (Solo Pasajes):" textFill="WHITE" />
+      
+      <ToggleButton fx:id="btnCatamaran" layoutX="66.0" layoutY="380.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Catamaran">
+         <toggleGroup>
+            <ToggleGroup fx:id="grupoFiltro" /> </toggleGroup>
+         <font><Font name="System Bold" size="14.0" /></font>
+         <cursor><Cursor fx:constant="HAND" /></cursor>
+      </ToggleButton>
+
+      <ToggleButton fx:id="btnFerry" layoutX="350.0" layoutY="380.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ferry" toggleGroup="$grupoFiltro">
+         <font><Font name="System Bold" size="14.0" /></font>
+         <cursor><Cursor fx:constant="HAND" /></cursor>
+      </ToggleButton>
+
+      <ToggleButton fx:id="btnWellboat" layoutX="623.0" layoutY="380.0" mnemonicParsing="false" onAction="#seleccionarBarco" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(#81c784, #4caf50); -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 8; -fx-background-radius: 8;" text="Wellboat" toggleGroup="$grupoFiltro">
+         <font><Font name="System Bold" size="14.0" /></font>
+         <cursor><Cursor fx:constant="HAND" /></cursor>
+      </ToggleButton>
+
+      <Button fx:id="btnSalir" layoutX="384.0" layoutY="500.0" mnemonicParsing="false" onAction="#volverInicio" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-color: #2ecc71; -fx-border-radius: 20;" text="Volver">
+         <font><Font name="System Bold" size="12.0" /></font>
+         <cursor><Cursor fx:constant="HAND" /></cursor>
       </Button>
-
    </children>
 </AnchorPane>

@@ -21,42 +21,41 @@ public class SeguimientoController {
     @FXML private Label lblFecha;
     @FXML private Label lblDestino;
     @FXML private Label lblMonto;
+    @FXML private Label lblCantidadViajes;
     @FXML private Button btnSalir;
 
-    public void cargarDatosCliente(String nombre, String rut) {
+    public void cargarDatosCliente(String nombreUsuario, String rutBuscado) {
         boolean encontrado = false;
+        int contadorViajes = 0;
 
-        // recorremos los viajes de atras hacia adelante para ver el mas reciente
         for (int i = Main.listaViajes.size() - 1; i >= 0; i--) {
             Viaje v = Main.listaViajes.get(i);
             for (Pasaje p : v.getListaPasajes()) {
-                if (p.getCliente().getRut().equalsIgnoreCase(rut)) {
-                    mostrarDatos("Pasaje Comprado", v.getFecha().toString(), v.getDestino().getNombre(), "$ " + p.getPreciofinal());
-                    encontrado = true;
-                    break;
+                if (p.getCliente().getRut().equalsIgnoreCase(rutBuscado)) {
+                    contadorViajes++;
+                    if (!encontrado) {
+                        mostrarDatos("Pasaje - Confirmado", v.getFecha().toString(), v.getDestino().getNombre(), "$ " + p.getPreciofinal());
+                        encontrado = true;
+                    }
                 }
             }
-            if (encontrado) break;
         }
-
-        // si no encontramos pasaje buscamos en Encomiendas
         if (!encontrado) {
             for (int i = Main.listaEncomiendas.size() - 1; i >= 0; i--) {
                 Encomienda e = Main.listaEncomiendas.get(i);
-                if (e.getCliente().getRut().equalsIgnoreCase(rut)) {
-                    mostrarDatos("Encomienda", "Fecha Reciente", e.getDescripcion(), "$ " + e.getPrecioFinal());
+                if (e.getCliente().getRut().equalsIgnoreCase(rutBuscado)) {
+                    mostrarDatos("Encomienda - En Reparto", "Pendiente", e.getDescripcion(), "$ " + e.getPrecioFinal());
                     encontrado = true;
                     break;
                 }
             }
         }
+        if (lblCantidadViajes != null) {
+            lblCantidadViajes.setText(String.valueOf(contadorViajes));
+        }
 
-        // no hay nada
         if (!encontrado) {
-            lblEstado.setText("SIN MOVIMIENTOS");
-            lblFecha.setText("--/--/----");
-            lblDestino.setText("---");
-            lblMonto.setText("$ 0");
+            mostrarDatos("SIN MOVIMIENTOS RECIENTES", "--/--/----", "---", "$ 0");
         }
     }
 

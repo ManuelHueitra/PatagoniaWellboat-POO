@@ -15,25 +15,23 @@ import java.io.IOException;
 
 public class ResumenVentasController {
 
-    @FXML private Label lblMonto;
-    @FXML private Label lblMonto1;
+    @FXML private Label lblMonto;    
+    @FXML private Label lblCantidad;
     
     @FXML private ToggleButton btnCatamaran;
     @FXML private ToggleButton btnFerry;
     @FXML private ToggleButton btnWellboat;
-
-    @FXML private ToggleGroup grupoBarcos; 
-    @FXML private ToggleGroup grupoBarcos1;
-    @FXML private ToggleGroup grupoBarcos2;
-    
-    @FXML private Label lblDestino; 
-    @FXML private Label lblDestino1; 
-    @FXML private Label lblDestino2;
+    @FXML private ToggleGroup grupoFiltro; 
     
     @FXML private javafx.scene.control.Button btnSalir;
 
     @FXML
     public void initialize() {
+        if (grupoFiltro == null) grupoFiltro = new ToggleGroup();
+        btnCatamaran.setToggleGroup(grupoFiltro);
+        btnFerry.setToggleGroup(grupoFiltro);
+        btnWellboat.setToggleGroup(grupoFiltro);
+
         calcularEstadisticas();
     }
 
@@ -43,30 +41,31 @@ public class ResumenVentasController {
     }
 
     private void calcularEstadisticas() {
-        int totalVentas = 0;
-        int cantidadPasajes = 0;
-
-        Class<? extends Embarcacion> tipoFiltro = null;
-        
-        if (btnCatamaran != null && btnCatamaran.isSelected()) tipoFiltro = CatamaranLiviano.class;
-        else if (btnFerry != null && btnFerry.isSelected()) tipoFiltro = FerryMediano.class;
-        else if (btnWellboat != null && btnWellboat.isSelected()) tipoFiltro = WellboatGranCapacidad.class;
+        int totalDinero = 0;
+        int totalCantidad = 0;
+        Class<?> claseFiltro = null;
+        if (btnCatamaran.isSelected()) claseFiltro = CatamaranLiviano.class;
+        else if (btnFerry.isSelected()) claseFiltro = FerryMediano.class;
+        else if (btnWellboat.isSelected()) claseFiltro = WellboatGranCapacidad.class;
 
         for (Viaje v : Main.listaViajes) {
-            if (tipoFiltro != null && !tipoFiltro.isInstance(v.getEmbarcacionAsignada())) {
+            if (claseFiltro != null && !claseFiltro.isInstance(v.getEmbarcacionAsignada())) {
                 continue;
             }
 
             for (Pasaje p : v.getListaPasajes()) {
-                totalVentas += p.getPreciofinal();
-                cantidadPasajes++;
+                totalDinero += p.getPreciofinal();
+                totalCantidad++;
             }
         }
-
-        if (lblMonto != null) lblMonto.setText("$ " + totalVentas);
-        if (lblMonto1 != null) lblMonto1.setText(String.valueOf(cantidadPasajes));
-        
-        if (lblDestino != null) lblDestino.setText("Filtrado");
+        if (claseFiltro == null) {
+            for (Encomienda e : Main.listaEncomiendas) {
+                totalDinero += e.getPrecioFinal();
+                totalCantidad++;
+            }
+        }
+        lblMonto.setText("$ " + totalDinero);
+        lblCantidad.setText(String.valueOf(totalCantidad));
     }
 
     @FXML
@@ -75,7 +74,6 @@ public class ResumenVentasController {
             Parent root = FXMLLoader.load(getClass().getResource("/patagonia/view/MenuGerente.fxml"));
             Stage stage = (Stage) btnSalir.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Patagonia Wellboat - Menú Gerente");
         } catch (IOException e) {
             e.printStackTrace();
         }

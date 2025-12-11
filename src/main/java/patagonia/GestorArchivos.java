@@ -1,74 +1,52 @@
 package patagonia;
 
-import java.io.*; // salida e entrada del archivo
-import java.util.List; // listas
-import patagonia.model.*; 
+import patagonia.model.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestorArchivos {
-    
     private static final String ARCHIVO_DATOS = "datos_patagonia.txt";
-
-    public static void guardarDatos(List<Usuario> usuarios, List<Destino> destinos, List<Embarcacion> flota, List<Viaje> viajes, List<Encomienda> listaEncomiendas) {
-        // guarda todo directo como objetos
+    public static void guardarDatos(List<Usuario> usuarios, List<Destino> destinos, List<Embarcacion> embarcaciones, List<Viaje> viajes, List<Encomienda> encomiendas) { // <--- Agregamos Encomiendas aquí
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_DATOS))) {
-            
             oos.writeObject(usuarios);
             oos.writeObject(destinos);
-            oos.writeObject(flota);
+            oos.writeObject(embarcaciones);
             oos.writeObject(viajes);
-            oos.writeObject(listaEncomiendas);
-            
-            System.out.println("Datos guardados...");
-
+            oos.writeObject(encomiendas);
+            System.out.println("Datos guardados correctamente.");
         } catch (IOException e) {
-            // si falla muestra el error
-            System.err.println("Error al guardar: " + e.getMessage());
+            System.out.println("Error al guardar datos: " + e.getMessage());
         }
     }
 
-    public static boolean cargarDatos(List<Usuario> usuarios, List<Destino> destinos, List<Embarcacion> flota, List<Viaje> viajes, List<Encomienda> listaEncomiendas) {
-        
+    @SuppressWarnings("unchecked")
+    public static boolean cargarDatos(List<Usuario> usuarios, List<Destino> destinos, List<Embarcacion> embarcaciones, List<Viaje> viajes,List<Encomienda> encomiendas) { // <--- Recibir la lista vacía para llenarla
         File archivo = new File(ARCHIVO_DATOS);
-        
-        // verificamos si el archivo existe
-        // si no existe mandamos un false al main
         if (!archivo.exists()) {
             return false;
         }
 
-        // abrimos el flujo de lectura
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
-        //lee el contenido en binario y lo traduce para que tu programa lo entienda como objetos
-        
-            // leemos los objetos del archivo
-            List<Usuario> u = (List<Usuario>) ois.readObject();
-            List<Destino> d = (List<Destino>) ois.readObject();
-            List<Embarcacion> f = (List<Embarcacion>) ois.readObject();
-            List<Viaje> v = (List<Viaje>) ois.readObject();
-            List<Encomienda> e = (List<Encomienda>) ois.readObject();
+            usuarios.clear();
+            destinos.clear();
+            embarcaciones.clear();
+            viajes.clear();
+            encomiendas.clear();
+            usuarios.addAll((List<Usuario>) ois.readObject());
+            destinos.addAll((List<Destino>) ois.readObject());
+            embarcaciones.addAll((List<Embarcacion>) ois.readObject());
+            viajes.addAll((List<Viaje>) ois.readObject());
+            try {
+                encomiendas.addAll((List<Encomienda>) ois.readObject());
+            } catch (Exception e) {
+                System.out.println("Advertencia: No se encontraron encomiendas en el archivo antiguo.");
+            }
 
-            // limpiamos la lista actual antes de cargar los datos
-            usuarios.clear(); 
-            usuarios.addAll(u);
-            
-            destinos.clear(); 
-            destinos.addAll(d);
-            
-            flota.clear(); 
-            flota.addAll(f);
-            
-            viajes.clear(); 
-            viajes.addAll(v);
-            
-            listaEncomiendas.clear();
-            listaEncomiendas.addAll(e);
-            
-            System.out.println("Datos cargados del txt exitosamente");
+            System.out.println("Datos cargados correctamente.");
             return true;
-
-        } catch (Exception e) {
-            // si el archivo esta corrupto manda un false
-            System.err.println("Error al cargar: " + e.getMessage());
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar datos (posiblemente archivo corrupto o versión antigua): " + e.getMessage());
             return false;
         }
     }
